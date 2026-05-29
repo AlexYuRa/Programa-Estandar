@@ -9,7 +9,7 @@ import { informacionContacto } from '../constants/contacto';
 export default function Contacto() {
   return (
     <PageWrapper>
-      <div className="bg-light py-16 lg:py-24 min-h-screen">
+      <div className="bg-light py-10 lg:py-8 min-h-screen">
         <div className="container mx-auto px-4 md:px-6">
           <SectionTitle 
             title="Contacto y Ubicación" 

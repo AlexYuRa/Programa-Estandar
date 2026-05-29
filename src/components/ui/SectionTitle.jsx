@@ -14,7 +14,7 @@ export function SectionTitle({ title, subtitle, center = false, className }) {
         whileInView={{ width: '80px' }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={clsx("h-1 bg-secondary rounded-full", center ? "mx-auto" : "")}
+        className={clsx("h-1 bg-[#F58220] rounded-full", center ? "mx-auto" : "")}
       />
 
       {subtitle && (

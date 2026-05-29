@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
+import { Phone, Mail, Search, ChevronDown, Menu, X } from 'lucide-react';
+import logo from '../../assets/logo.png';
+import Breadcrumbs from './Breadcrumbs';
 
 const NAV_LINKS = [
   { name: 'Inicio', path: '/' },
@@ -9,36 +12,38 @@ const NAV_LINKS = [
     name: 'Nosotros', 
     path: '/nosotros',
     sublinks: [
-      { name: 'Misión y Visión', path: '/nosotros/mision-vision' },
-      { name: 'Historia', path: '/nosotros/historia' }
+      { name: 'Misión y Visión', path: '/nosotros#mision-vision' },
+      { name: 'Historia', path: '/nosotros#historia' },
+      { name: 'Colegios Aliados', path: '/nosotros#convenios-escuelas' }
     ]
   },
   { 
     name: 'Académico', 
     path: '/academico',
     sublinks: [
-      { name: 'Perfil del Egresado', path: '/academico/perfil-egresado' },
-      { name: 'Plan de Estudios', path: '/academico/plan-estudios' },
-      { name: 'Titulación', path: '/academico/titulacion' }
+      { name: 'Perfil del Ingresante', path: '/academico#perfil-ingresante' },
+      { name: 'Perfil del Egresado', path: '/academico#perfil-egresado' },
+      { name: 'Plan de Estudios', path: '/academico#plan-estudios' },
+      { name: 'Titulación', path: '/academico#titulacion' }
     ]
   },
   { 
     name: 'Autoridades', 
     path: '/autoridades',
     sublinks: [
-      { name: 'Dirección', path: '/autoridades/direccion' },
-      { name: 'Docentes', path: '/autoridades/docentes' },
-      { name: 'Organigrama', path: '/autoridades/organigrama' }
+      { name: 'Dirección', path: '/autoridades#direccion' },
+      { name: 'Docentes', path: '/autoridades#docentes' },
+      { name: 'Organigrama', path: '/autoridades#organigrama' }
     ]
   },
   { 
     name: 'Investigación', 
     path: '/investigacion',
     sublinks: [
-      { name: 'Líneas', path: '/investigacion/lineas' },
-      { name: 'Proyectos', path: '/investigacion/proyectos' },
-      { name: 'Publicaciones', path: '/investigacion/publicaciones' },
-      { name: 'Convenios', path: '/investigacion/convenios' }
+      { name: 'Líneas', path: '/investigacion#lineas' },
+      { name: 'Proyectos', path: '/investigacion#proyectos' },
+      { name: 'Publicaciones', path: '/investigacion#publicaciones' },
+      { name: 'Convenios', path: '/investigacion#convenios' }
     ]
   },
   { name: 'Contacto', path: '/contacto' }
@@ -57,27 +62,54 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return (
     <header 
       className={clsx(
-        'sticky top-0 z-50 w-full transition-all duration-300 border-b border-gray-100',
-        scrolled ? 'bg-white shadow-sm py-3' : 'bg-white py-5'
+        'sticky top-0 z-50 w-full transition-all duration-300',
+        scrolled ? 'bg-pucp-blue-dark shadow-md' : 'bg-pucp-blue-dark'
       )}
     >
+      {/* Top Bar */}
+      <div className="bg-[#243E4E] text-gray-300 text-[13px] py-2 border-b-2 border-[#D4A017] hidden md:block">
+        <div className="container mx-auto px-4 md:px-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 md:gap-8">
+            <span className="font-semibold text-white">¿Tienes alguna duda?</span>
+            <span className="flex items-center gap-1.5 hover:text-[#D4A017] transition-colors cursor-pointer">
+              <Phone className="w-4 h-4" />
+              (+51) 920 027 273
+            </span>
+            <span className="flex items-center gap-1.5 hover:text-[#D4A017] transition-colors cursor-pointer">
+              <Mail className="w-4 h-4" />
+              facedu@unitru.edu.pe
+            </span>
+          </div>
+          <div className="flex items-center">
+            <div className="relative group flex items-center">
+              <input 
+                type="text" 
+                placeholder="Buscar..." 
+                className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-[#D4A017] transition-all w-32 focus:w-48"
+              />
+              <Search className="w-4 h-4 text-gray-400 ml-1 hover:text-[#D4A017] cursor-pointer transition-colors" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Logo / Marca */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-pucp-blue-dark rounded-md flex items-center justify-center text-white font-display font-bold text-xl transition-colors group-hover:bg-pucp-blue-light">
-              EP
+          <Link to="/" className="flex items-center gap-3 group py-3">
+            <div className="h-16 md:h-20 flex items-center justify-center transition-transform group-hover:scale-105">
+              <img src={logo} alt="Logo UNT" className="h-full w-auto object-contain drop-shadow-md" />
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-pucp-blue-dark tracking-tight leading-tight text-lg md:text-xl">
+              <span className="font-display font-bold text-white tracking-tight leading-tight text-lg md:text-xl">
                 Educación Primaria
               </span>
-              <span className="text-xs text-pucp-gray-dark font-body hidden sm:block uppercase tracking-wider font-semibold mt-0.5">
+              <span className="text-xs text-white/80 font-body hidden sm:block uppercase tracking-wider font-semibold mt-0.5">
                 Universidad Nacional
               </span>
             </div>
@@ -86,27 +118,30 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
-              <div key={link.name} className="relative group px-3 py-2">
+              <div key={link.name} className="relative group h-full flex">
                 <NavLink
                   to={link.path}
                   end={link.path === '/'}
                   className={({ isActive }) => clsx(
-                  'font-body font-medium text-[15px] transition-colors',
-                  isActive ? 'text-pucp-blue-light' : 'text-pucp-gray-dark hover:text-pucp-blue-light'
+                  'font-body font-medium text-[15px] transition-colors flex items-center px-4 py-5 md:py-6',
+                  isActive ? 'bg-[#D4A017] text-white' : 'text-white hover:bg-white/10'
                   )}
                 >
                   {link.name}
+                  {link.sublinks && (
+                    <ChevronDown className="w-4 h-4 ml-1 opacity-70" />
+                  )}
                 </NavLink>
                 
                 {/* Dropdown */}
                 {link.sublinks && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="py-2">
+                  <div className="absolute top-full left-0 w-64 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
+                    <div className="flex flex-col">
                       {link.sublinks.map((sublink) => (
                         <Link
                           key={sublink.name}
                           to={sublink.path}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-accent hover:text-primary transition-colors"
+                          className="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-pucp-blue-dark transition-colors border-b border-gray-100 last:border-b-0"
                         >
                           {sublink.name}
                         </Link>
@@ -120,17 +155,11 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button 
-            className="lg:hidden text-primary p-2 focus:outline-none"
+            className="lg:hidden text-white p-2 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -176,6 +205,8 @@ export default function Navbar() {
           </motion.nav>
         )}
       </AnimatePresence>
+
+      <Breadcrumbs />
     </header>
   );
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import PageWrapper from '../../components/layout/PageWrapper';
 import { SectionTitle } from '../../components/ui/SectionTitle';
 import { Tabs } from '../../components/ui/Tabs';
 import { Accordion } from '../../components/ui/Accordion';
 import { Badge } from '../../components/ui/Badge';
 import { planEstudios } from '../../constants/academico';
+import { Download } from 'lucide-react';
 
 export default function PlanEstudios() {
   const [activeTab, setActiveTab] = useState(0);
@@ -47,34 +47,44 @@ export default function PlanEstudios() {
   );
 
   return (
-    <PageWrapper>
-      <div className="bg-white py-16 lg:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <SectionTitle 
-            title="Plan de Estudios" 
-            center 
-            subtitle="Conoce nuestra malla curricular actualizada, estructurada por ciclos académicos." 
-          />
-          
-          <div className="max-w-5xl mx-auto mt-12">
-            {isMobile ? (
-              <div className="space-y-4">
-                {planEstudios.map((ciclo, idx) => (
-                  <Accordion key={idx} title={ciclo.ciclo} defaultOpen={idx === 0}>
-                    {renderCursos(ciclo.cursos)}
-                  </Accordion>
-                ))}
-              </div>
-            ) : (
-              <Tabs 
-                activeTab={activeTab} 
-                onChange={setActiveTab}
-                tabs={planEstudios.map(ciclo => ({ label: ciclo.ciclo, content: renderCursos(ciclo.cursos) }))} 
-              />
-            )}
-          </div>
+    <div className="bg-white py-10 lg:py-8">
+      <div className="container mx-auto px-4 md:px-6">
+        <SectionTitle 
+          title="Plan de Estudios" 
+          center 
+          subtitle="Conoce nuestra malla curricular actualizada, estructurada por ciclos académicos." 
+        />
+
+        <div className="flex justify-center mt-6">
+          <a 
+            href="/wp-content/themes/educacion-primaria/dist/Plan_de_Estudios_2025.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#F58220] text-white font-bold rounded-lg hover:bg-[#E07010] transition-colors shadow-md"
+          >
+            <Download className="w-5 h-5" />
+            Descargar Malla Curricular (PDF)
+          </a>
+        </div>
+        
+        <div className="max-w-5xl mx-auto mt-12">
+          {isMobile ? (
+            <div className="space-y-4">
+              {planEstudios.map((ciclo, idx) => (
+                <Accordion key={idx} title={ciclo.ciclo} defaultOpen={idx === 0}>
+                  {renderCursos(ciclo.cursos)}
+                </Accordion>
+              ))}
+            </div>
+          ) : (
+            <Tabs 
+              activeTab={activeTab} 
+              onChange={setActiveTab}
+              tabs={planEstudios.map(ciclo => ({ label: ciclo.ciclo, content: renderCursos(ciclo.cursos) }))} 
+            />
+          )}
         </div>
       </div>
-    </PageWrapper>
+    </div>
   );
 }

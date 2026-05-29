@@ -20,5 +20,5 @@ export function Loader({ fullScreen = false }) {
     );
   }
 
-  return <div className="py-12 flex justify-center w-full">{content}</div>;
+  return <div className="py-8 flex justify-center w-full">{content}</div>;
 }

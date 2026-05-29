@@ -22,7 +22,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'Segoe UI', 'Arial', 'sans-serif'],
-        display: ['Inter', 'Segoe UI', 'Arial', 'sans-serif'],
+        display: ['"Roboto Slab"', 'Georgia', 'serif'],
         body: ['Inter', 'Segoe UI', 'Arial', 'sans-serif'],
       }
     },
