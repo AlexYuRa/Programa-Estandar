@@ -135,14 +135,14 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center bg-pucp-blue-dark">
+          <nav className="hidden lg:flex items-center bg-pucp-blue-dark mr-5">
             {NAV_LINKS.map((link) => (
               <div key={link.name} className="relative group h-full flex">
                 <NavLink
                   to={link.path}
                   end={link.path === '/'}
                   className={({ isActive }) => clsx(
-                  'font-body font-medium text-[15px] transition-colors flex items-center px-4 py-5 md:py-6',
+                  'font-body font-medium text-[16px] transition-colors flex items-center px-7 py-5 md:py-6',
                   isActive ? 'bg-[#D4A017] text-white' : 'text-white hover:bg-white/10'
                   )}
                 >

@@ -21,9 +21,9 @@ export default {
         success: '#2D6A4F',
       },
       fontFamily: {
-        sans: ['Inter', 'Segoe UI', 'Arial', 'sans-serif'],
+        sans: ['Arial', 'Helvetica', 'sans-serif'],
         display: ['"Roboto Slab"', 'Georgia', 'serif'],
-        body: ['Inter', 'Segoe UI', 'Arial', 'sans-serif'],
+        body: ['Arial', 'Helvetica', 'sans-serif'],
       }
     },
   },

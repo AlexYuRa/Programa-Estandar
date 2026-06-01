@@ -9,20 +9,22 @@ export default function OrganigramaNode({ nodo, level = 0 }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: level * 0.15 }}
-        className={`p-4 rounded-lg shadow-sm border text-center min-w-[220px] max-w-[280px] z-10 bg-white
-          ${level === 0 ? 'border-secondary border-2 shadow-md' : 'border-gray-200 hover:border-primary/50 transition-colors'}`}
+        className={`relative p-5 rounded-xl text-center min-w-[240px] max-w-[280px] z-10 shadow-lg border overflow-hidden
+          ${level === 0 ? 'bg-[#002D62] text-white border-transparent ring-4 ring-[#002D62]/10' : 'bg-white border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300'}`}
       >
-        <h4 className="font-display font-bold text-primary leading-tight">{nodo.nombre}</h4>
-        {nodo.cargo && <p className="text-xs text-gray-500 mt-2 font-semibold uppercase tracking-wide">{nodo.cargo}</p>}
+        {level !== 0 && <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#002D62] to-[#F58220]"></div>}
+        
+        <h4 className={`font-display font-bold leading-tight ${level === 0 ? 'text-white text-lg' : 'text-[#002D62]'}`}>{nodo.nombre}</h4>
+        {nodo.cargo && <p className={`text-xs mt-2 font-semibold uppercase tracking-wide ${level === 0 ? 'text-[#F58220]' : 'text-gray-500'}`}>{nodo.cargo}</p>}
       </motion.div>
       
       {nodo.hijos && nodo.hijos.length > 0 && (
         <>
-          <div className="w-px h-8 bg-gray-300"></div>
-          <div className="border-t-2 border-gray-300 flex justify-center pt-8 relative mt-[-2px] gap-4">
+          <div className="w-px h-8 bg-[#002D62]/20"></div>
+          <div className="border-t-2 border-[#002D62]/20 flex justify-center pt-8 relative mt-[-2px] gap-6">
             {nodo.hijos.map((hijo, idx) => (
               <div key={idx} className="flex flex-col items-center relative px-2">
-                <div className="absolute top-[-34px] w-px h-8 bg-gray-300"></div>
+                <div className="absolute top-[-34px] w-px h-8 bg-[#002D62]/20"></div>
                 <OrganigramaNode nodo={hijo} level={level + 1} />
               </div>
             ))}
