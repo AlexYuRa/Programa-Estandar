@@ -10,6 +10,7 @@ export const noticias = [
     fecha: '2025-06-15',
     fechaFormateada: '15 Jun 2025',
     link: '/investigacion#proyectos',
+    imagen: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
   },
   {
     id: 2,
@@ -21,16 +22,18 @@ export const noticias = [
     fecha: '2025-06-10',
     fechaFormateada: '10 Jun 2025',
     link: '/nosotros#convenios-escuelas',
+    imagen: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80',
   },
   {
     id: 3,
     categoria: 'Logro Institucional',
     categoriaColor: 'bg-green-100 text-green-700',
-    titulo: 'Escuela recibe reconocimiento SINEACE por calidad educativa',
+    titulo: 'Nueva Sede en Huamachuco 2026',
     resumen:
-      'La Escuela Profesional de Educación Primaria obtuvo la renovación de su acreditación de calidad educativa otorgada por SINEACE, refirmando su compromiso con la excelencia.',
+      'Nos complace anunciar la apertura de nuestra nueva sede descentralizada en la ciudad de Huamachuco para el año académico 2026, expandiendo nuestra excelencia educativa.',
     fecha: '2025-05-28',
     fechaFormateada: '28 May 2025',
     link: '/nosotros#historia',
+    imagen: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80',
   },
 ];

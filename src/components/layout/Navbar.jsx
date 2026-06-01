@@ -3,7 +3,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { Phone, Mail, Search, ChevronDown, Menu, X } from 'lucide-react';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/unt1.png';
 import Breadcrumbs from './Breadcrumbs';
 import AnnouncementBanner from './AnnouncementBanner';
 
@@ -53,7 +53,16 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' || e.type === 'click') {
+      if (searchTerm.trim()) {
+        window.open(`https://www.google.com/search?q=site:unitru.edu.pe+${encodeURIComponent(searchTerm.trim())}`, '_blank');
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -69,11 +78,11 @@ export default function Navbar() {
     <header 
       className={clsx(
         'sticky top-0 z-50 w-full transition-all duration-300',
-        scrolled ? 'bg-pucp-blue-dark shadow-md' : 'bg-pucp-blue-dark'
+        scrolled ? 'bg-white shadow-md' : 'bg-white'
       )}
     >
       {/* Top Bar */}
-      <div className="bg-[#243E4E] text-gray-300 text-[13px] py-2 border-b-2 border-[#D4A017] hidden md:block">
+      <div className="bg-pucp-blue-dark text-gray-300 text-[13px] py-2 border-b-2 border-[#D4A017] hidden md:block">
         <div className="container mx-auto px-4 md:px-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 md:gap-8">
             <span className="font-semibold text-white">¿Tienes alguna duda?</span>
@@ -91,9 +100,15 @@ export default function Navbar() {
               <input 
                 type="text" 
                 placeholder="Buscar..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleSearch}
                 className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-[#D4A017] transition-all w-32 focus:w-48"
               />
-              <Search className="w-4 h-4 text-gray-400 ml-1 hover:text-[#D4A017] cursor-pointer transition-colors" />
+              <Search 
+                className="w-4 h-4 text-gray-400 ml-1 hover:text-[#D4A017] cursor-pointer transition-colors" 
+                onClick={handleSearch}
+              />
             </div>
           </div>
         </div>
@@ -110,17 +125,17 @@ export default function Navbar() {
               <img src={logo} alt="Logo UNT" className="h-full w-auto object-contain drop-shadow-md" />
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-white tracking-tight leading-tight text-lg md:text-xl">
-                Educación Primaria
+              <span className="font-display font-bold tracking-tight leading-tight text-lg md:text-xl">
+                <span className="text-pucp-blue-dark">Educación</span> <span className="text-[#F58220]">Primaria</span>
               </span>
-              <span className="text-xs text-white/80 font-body hidden sm:block uppercase tracking-wider font-semibold mt-0.5">
-                Universidad Nacional
+              <span className="text-xs text-black font-body hidden sm:block uppercase tracking-wider font-semibold mt-0.5">
+                UNIVERSIDAD NACIONAL
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center bg-pucp-blue-dark">
             {NAV_LINKS.map((link) => (
               <div key={link.name} className="relative group h-full flex">
                 <NavLink
@@ -159,7 +174,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button 
-            className="lg:hidden text-white p-2 focus:outline-none"
+            className="lg:hidden text-pucp-blue-dark p-2 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >

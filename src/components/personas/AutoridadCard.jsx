@@ -1,14 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '../ui/Card';
+import { User } from 'lucide-react';
 
 export default function AutoridadCard({ autoridad, principal = false }) {
   return (
     <motion.div whileHover={{ y: -5 }} className="h-full">
       <Card className={`h-full p-8 flex flex-col items-center text-center ${principal ? 'border-2 border-secondary/50 shadow-lg' : ''}`}>
         {/* Avatar Placeholder */}
-        <div className={`${principal ? 'w-32 h-32' : 'w-24 h-24'} bg-primary/10 rounded-full mb-6 flex items-center justify-center text-primary font-display font-bold ${principal ? 'text-4xl' : 'text-2xl'}`}>
-          {autoridad.nombre.charAt(0)}
+        <div className={`${principal ? 'w-32 h-32' : 'w-24 h-24'} bg-primary/10 rounded-xl mb-6 flex items-center justify-center text-primary`}>
+          <User className={`${principal ? 'w-16 h-16' : 'w-12 h-12'} opacity-70`} />
         </div>
         
         <span className="text-secondary font-bold text-sm tracking-wider uppercase mb-2">{autoridad.cargo}</span>

@@ -226,6 +226,14 @@ export default function Inicio() {
                   <Card className="h-full flex flex-col p-0 overflow-hidden hover:shadow-lg transition-shadow">
                     {/* Franja superior de color por categoría */}
                     <div className="h-1.5 bg-[#002D62] w-full" />
+                    {/* Imagen de la noticia */}
+                    <div className="h-48 w-full overflow-hidden shrink-0">
+                      <img
+                        src={noticia.imagen}
+                        alt={noticia.titulo}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                     <div className="p-6 flex flex-col flex-1">
                       <div className="flex items-center gap-2 mb-3">
                         <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${noticia.categoriaColor}`}>
@@ -254,60 +262,7 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* ─── Mensaje del Director / Decana ─── */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-5xl mx-auto bg-[#002D62] rounded-2xl overflow-hidden shadow-2xl">
-            <div className="grid grid-cols-1 md:grid-cols-3">
-              {/* Foto / Silueta */}
-              <div className="relative flex items-end justify-center bg-gradient-to-br from-[#003580] to-[#001a3d] min-h-[220px] md:min-h-0">
-                <div className="w-full h-full flex flex-col items-center justify-end pb-0 pt-8 px-8">
-                  {/* Silueta SVG de persona */}
-                  <svg
-                    viewBox="0 0 200 260"
-                    className="w-40 md:w-full max-w-[180px] opacity-60"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    {/* Cabeza */}
-                    <ellipse cx="100" cy="65" rx="38" ry="42" fill="rgba(255,255,255,0.25)" />
-                    {/* Cuerpo */}
-                    <path
-                      d="M30 260 C30 170 60 140 100 135 C140 140 170 170 170 260Z"
-                      fill="rgba(255,255,255,0.2)"
-                    />
-                    {/* Cuello */}
-                    <rect x="88" y="103" width="24" height="22" rx="8" fill="rgba(255,255,255,0.2)" />
-                    {/* Blazer/toga decorativa */}
-                    <path d="M50 175 L100 155 L150 175 L155 260 L45 260Z" fill="rgba(245,130,32,0.25)" />
-                  </svg>
-                </div>
-                {/* Plaquita con nombre */}
-                <div className="absolute bottom-0 left-0 right-0 bg-[#F58220] text-white text-center py-2 px-3">
-                  <p className="font-display font-bold text-sm leading-tight">{director.nombre}</p>
-                  <p className="text-xs text-white/80 font-medium">{director.cargo}</p>
-                </div>
-              </div>
 
-              {/* Texto */}
-              <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-center text-white">
-                <div className="w-10 h-1 bg-[#F58220] mb-5 rounded-full" />
-                <h2 className="font-display font-bold text-2xl md:text-3xl mb-5 leading-tight">
-                  Mensaje de la <span className="text-[#F58220]">Dirección</span>
-                </h2>
-                <blockquote className="text-white/80 font-body text-base leading-relaxed mb-6 italic border-l-2 border-[#F58220]/50 pl-4">
-                  "{director.bio}"
-                </blockquote>
-                <Link to="/autoridades#direccion">
-                  <button className="inline-flex items-center gap-2 bg-[#F58220] hover:bg-[#e07010] text-white font-bold px-6 py-2.5 rounded-lg transition-colors text-sm">
-                    Conocer más <ArrowRight className="w-4 h-4" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ══════════════════════════════════════════
           ACCESOS RÁPIDOS — Cards premium numeradas

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
 import { informacionContacto, redesSociales } from '../../constants/contacto';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/unt1.png';
 
 // Iconos SVG de Redes Sociales
 const FacebookIcon = () => (

@@ -88,20 +88,20 @@ export default function Breadcrumbs() {
   const hashName = hashMap[currentHash];
 
   return (
-    <div className="bg-white border-b border-gray-100 py-3 w-full">
+    <div className="bg-pucp-blue-dark py-3 w-full">
       <div className="container mx-auto px-4 md:px-6">
-        <nav className="flex text-[13px] md:text-sm text-gray-500 font-body" aria-label="Breadcrumb">
+        <nav className="flex text-[13px] md:text-sm text-white/80 font-body" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-2">
             <li className="inline-flex items-center">
-              <Link to="/" className="inline-flex items-center hover:text-pucp-blue-dark transition-colors">
+              <Link to="/" className="inline-flex items-center hover:text-white transition-colors">
                 Inicio
               </Link>
             </li>
             
             <li>
               <div className="flex items-center">
-                <ChevronRight className="w-4 h-4 text-gray-400 mx-1" />
-                <Link to={location.pathname} className={`hover:text-pucp-blue-dark transition-colors ${!hashName ? 'text-pucp-blue-dark font-semibold' : ''}`}>
+                <ChevronRight className="w-4 h-4 text-white/60 mx-1" />
+                <Link to={location.pathname} className={`hover:text-white transition-colors ${!hashName ? 'text-white font-semibold' : ''}`}>
                   {pathName}
                 </Link>
               </div>
@@ -110,8 +110,8 @@ export default function Breadcrumbs() {
             {hashName && (
               <li>
                 <div className="flex items-center">
-                  <ChevronRight className="w-4 h-4 text-gray-400 mx-1" />
-                  <span className="text-pucp-blue-dark font-semibold">
+                  <ChevronRight className="w-4 h-4 text-white/60 mx-1" />
+                  <span className="text-white font-semibold">
                     {hashName}
                   </span>
                 </div>
