@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageWrapper from '../components/layout/PageWrapper';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { Card } from '../components/ui/Card';
-import { BookOpen, Users, FlaskConical, GraduationCap, Handshake, ArrowRight, Calendar, Sparkles, Star } from 'lucide-react';
+import { BookOpen, Users, FlaskConical, GraduationCap, Handshake, ArrowRight, Calendar } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import frontImage from '../assets/frontunt.jpg';
 import { noticias } from '../constants/noticias';
 import { director } from '../constants/autoridades';
+import useHeaderHeight from '../hooks/useHeaderHeight';
 
 export default function Inicio() {
+  // Alto del header sticky (varía con el banner de avisos y el responsive).
+  const headerHeight = useHeaderHeight();
+
+  // Mide el alto de la franja de cifras para descontarlo del hero, de modo que
+  // la franja aparezca completa al entrar (sin scroll) y no se mueva al cerrar
+  // el banner de avisos. Se recalcula en resize/reflow (1 fila en escritorio,
+  // 2 en móvil).
+  const cifrasRef = useRef(null);
+  const [cifrasHeight, setCifrasHeight] = useState(0);
+  useLayoutEffect(() => {
+    const el = cifrasRef.current;
+    if (!el) return;
+    const update = () => setCifrasHeight(el.offsetHeight);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    window.addEventListener('resize', update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  }, []);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.18 } }
@@ -41,12 +64,12 @@ export default function Inicio() {
           HERO — Motivador y enérgico para estudiantes
           ══════════════════════════════════════════ */}
       <section
-        className="relative overflow-hidden text-white min-h-[680px] flex items-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${frontImage})` }}
+        className="relative overflow-hidden text-white flex items-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${frontImage})`, minHeight: `calc(100dvh - ${headerHeight}px - ${cifrasHeight}px)` }}
       >
         {/* Overlay doble: izquierda transparente, derecha azul sólido */}
         <div className="absolute inset-0 z-0"
-          style={{ background: 'linear-gradient(110deg, rgba(0,0,0,0.1) 0%, rgba(18,55,123,0.82) 42%, rgba(0,12,74,0.97) 70%, #000C4A 100%)' }}
+          style={{ background: 'linear-gradient(110deg, rgba(0,0,0,0.05) 0%, rgba(0,29,70,0.62) 42%, rgba(0,20,55,0.77) 70%, rgba(0,18,50,0.80) 100%)' }}
         />
 
         {/* Patrón de puntos sutil */}
@@ -62,7 +85,7 @@ export default function Inicio() {
         {/* Acento naranja diagonal en la derecha */}
         <div className="absolute right-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#E6AC09] via-[#E6AC09]/60 to-transparent z-10" />
 
-        <div className="container relative z-10 mx-auto px-4 md:px-8 pt-24 pb-24 lg:pt-32 lg:pb-36">
+        <div className="container relative z-10 mx-auto px-4 md:px-8 pt-10 pb-10 lg:pt-12 lg:pb-14">
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -86,9 +109,8 @@ export default function Inicio() {
               variants={itemVariants}
               className="text-lg md:text-xl lg:text-2xl text-white/85 mb-8 font-body leading-relaxed"
             >
-              Tu vocación merece una carrera que{' '}
-              <em className="not-italic font-bold text-white">cambie vidas</em>.
-              Forma parte de quienes construyen el futuro del Perú.
+              Formamos maestros de primaria en la Universidad Nacional de Trujillo,
+              con rigor académico y compromiso con la calidad educativa.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-end">
@@ -102,13 +124,13 @@ export default function Inicio() {
                   Ver Plan de Estudios
                 </motion.button>
               </Link>
-              <Link to="/nosotros/historia">
+              <Link to="/nosotros/mision-vision">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-8 py-3.5 rounded-xl text-base backdrop-blur-sm transition-all"
                 >
-                  Conocer más
+                  Conoce la Escuela
                   <ArrowRight className="w-4 h-4" />
                 </motion.button>
               </Link>
@@ -120,7 +142,7 @@ export default function Inicio() {
       {/* ══════════════════════════════════════════
           CIFRAS — Franja de impacto oscura
           ══════════════════════════════════════════ */}
-      <section className="bg-[#000C4A] py-0">
+      <section ref={cifrasRef} className="bg-[#000C4A] py-0">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4">
             {cifras.map((cifra, idx) => (
@@ -150,8 +172,8 @@ export default function Inicio() {
           BIENVENIDA / VIDEO
           ══════════════════════════════════════════ */}
 
-      <section className="py-10 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Columna de Texto */}
@@ -167,13 +189,16 @@ export default function Inicio() {
               </h2>
               <div className="w-16 h-1 bg-[#E6AC09] mb-6"></div>
               
-              <div className="text-gray-700 font-body space-y-4 text-justify leading-relaxed">
+              <div className="text-gray-700 font-body space-y-4 leading-relaxed">
                 <p>
-                  "¡Bienvenidos a la Carrera de Educación Primaria! Este espacio educativo te invita a sumergirte en la asombrosa travesía de formar parte de la enseñanza fundamental. Prepárate para iniciar un viaje significativo, donde cultivarás habilidades esenciales y descubrirás la gratificación de guiar los primeros pasos en el aprendizaje de los más jóvenes."
+                  "Bienvenidos a la Escuela Profesional de Educación Primaria. Formamos
+                  maestros capaces de guiar los primeros pasos del aprendizaje con vocación,
+                  rigor académico y compromiso social. Te invitamos a conocer un programa
+                  que cuida cada detalle de tu formación."
                 </p>
-                <p>
-                  "Estamos emocionados de acompañarte en este camino educativo, contribuyendo al desarrollo integral de los estudiantes en sus años iniciales de educación. ¡Comencemos juntos este emocionante viaje hacia un futuro repleto de descubrimientos y aprendizaje en la Educación Primaria!"
-                </p>
+                <footer className="text-sm text-gray-600 not-italic font-semibold">
+                  — Karen Valderrama, Rectora de la Universidad Nacional de Trujillo
+                </footer>
               </div>
             </motion.div>
 
@@ -200,8 +225,8 @@ export default function Inicio() {
         </div>
       </section>
       {/* ─── Sección Noticias y Actualidad ─── */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <SectionTitle title="Noticias y Actualidad" subtitle="Últimas novedades, eventos y comunicados de la Escuela." />
             <Link
@@ -239,7 +264,7 @@ export default function Inicio() {
                         <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${noticia.categoriaColor}`}>
                           {noticia.categoria}
                         </span>
-                        <span className="flex items-center gap-1 text-gray-400 text-xs ml-auto">
+                        <span className="flex items-center gap-1 text-gray-500 text-xs ml-auto">
                           <Calendar className="w-3 h-3" />
                           {noticia.fechaFormateada}
                         </span>
@@ -247,7 +272,7 @@ export default function Inicio() {
                       <h3 className="font-display font-bold text-[#12377B] text-base leading-snug mb-3 group-hover:text-[#E6AC09] transition-colors flex-1">
                         {noticia.titulo}
                       </h3>
-                      <p className="text-gray-500 text-sm leading-relaxed mb-4">
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4">
                         {noticia.resumen}
                       </p>
                       <span className="mt-auto inline-flex items-center gap-1 text-[#E6AC09] text-sm font-bold group-hover:gap-2 transition-all">
@@ -267,13 +292,12 @@ export default function Inicio() {
       {/* ══════════════════════════════════════════
           ACCESOS RÁPIDOS — Cards premium numeradas
           ══════════════════════════════════════════ */}
-      <section className="py-14 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <SectionTitle
             title="Todo lo que necesitas **saber**"
             subtitle="Accede directo a la información más importante de nuestra escuela."
             center
-            badge="Explora"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 mt-12">
@@ -306,7 +330,7 @@ export default function Inicio() {
                         <h3 className="text-lg font-display font-black text-[#12377B] mb-2 leading-tight group-hover:text-[#E6AC09] transition-colors">
                           {acceso.titulo}
                         </h3>
-                        <p className="text-gray-500 text-sm leading-relaxed flex-1">
+                        <p className="text-gray-600 text-sm leading-relaxed flex-1">
                           {acceso.descripcion}
                         </p>
 
@@ -326,13 +350,12 @@ export default function Inicio() {
       {/* ══════════════════════════════════════════
           AMBIENTES — Infraestructura Especializada
           ══════════════════════════════════════════ */}
-      <section className="py-14 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <SectionTitle
             title="Nuestros **Ambientes**"
             subtitle="Espacios diseñados para tu desarrollo práctico y tecnológico."
             center
-            badge="Infraestructura"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">

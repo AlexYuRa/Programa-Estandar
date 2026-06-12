@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 /**
  * Mide en tiempo real la altura del <header> sticky (Navbar), que es variable
@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 export default function useHeaderHeight() {
   const [height, setHeight] = useState(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const header = document.querySelector('header');
     if (!header) return;
 

@@ -3,7 +3,7 @@ export const noticias = [
   {
     id: 1,
     categoria: 'Evento Académico',
-    categoriaColor: 'bg-blue-100 text-blue-700',
+    categoriaColor: 'bg-[#12377B] text-white',
     titulo: 'I Congreso Regional de Innovación Educativa en Educación Primaria',
     resumen:
       'Los días 15 y 16 de julio se realizará el primer congreso de innovación pedagógica organizado por nuestra escuela, con ponentes nacionales e internacionales.',
@@ -15,7 +15,7 @@ export const noticias = [
   {
     id: 2,
     categoria: 'Convocatoria',
-    categoriaColor: 'bg-orange-100 text-orange-700',
+    categoriaColor: 'bg-[#E6AC09] text-[#1B1711]',
     titulo: 'Convocatoria: Prácticas Preprofesionales en Colegios Aliados 2025-II',
     resumen:
       'Se abre la convocatoria para la asignación de plazas de práctica preprofesional en los colegios nacionales aliados de la red educativa de Trujillo.',
@@ -27,7 +27,7 @@ export const noticias = [
   {
     id: 3,
     categoria: 'Logro Institucional',
-    categoriaColor: 'bg-green-100 text-green-700',
+    categoriaColor: 'bg-[#000C4A] text-white',
     titulo: 'Nueva Sede en Huamachuco 2026',
     resumen:
       'Nos complace anunciar la apertura de nuestra nueva sede descentralizada en la ciudad de Huamachuco para el año académico 2026, expandiendo nuestra excelencia educativa.',

@@ -89,11 +89,11 @@ export default function Navbar() {
               <img
                 src={logo}
                 alt="Universidad Nacional de Trujillo"
-                className="h-20 md:h-24 w-auto object-contain drop-shadow-md"
+                className="h-24 md:h-[120px] w-auto object-contain drop-shadow-md"
               />
               {/* Separador (solo si existe el logo de la escuela) */}
               {schoolLogoOk && (
-                <span className="block w-px h-12 md:h-16 bg-gray-300" aria-hidden="true" />
+                <span className="block w-px h-14 md:h-20 bg-gray-300" aria-hidden="true" />
               )}
               {/* Logo de la Escuela: colocar la imagen en public/logos/logo-escuela.png.
                   Si no existe, no se muestra (ni el logo ni el separador). */}
@@ -103,7 +103,7 @@ export default function Navbar() {
                 onLoad={() => setSchoolLogoOk(true)}
                 onError={() => setSchoolLogoOk(false)}
                 className={clsx(
-                  'h-20 md:h-24 w-auto object-contain drop-shadow-md',
+                  'h-24 md:h-[120px] w-auto object-contain drop-shadow-md',
                   !schoolLogoOk && 'hidden'
                 )}
               />

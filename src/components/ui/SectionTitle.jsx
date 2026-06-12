@@ -60,7 +60,7 @@ export function SectionTitle({ title, subtitle, center = false, badge, className
       </div>
 
       {subtitle && (
-        <p className="text-gray-500 font-body text-base md:text-lg max-w-2xl leading-relaxed">
+        <p className="text-gray-600 font-body text-base md:text-lg max-w-2xl leading-relaxed">
           {subtitle}
         </p>
       )}
