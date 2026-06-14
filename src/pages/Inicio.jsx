@@ -35,7 +35,7 @@ export default function Inicio() {
     };
   }, []);
 
-  // Carrusel del hero (máx. 3 imágenes): crossfade + zoom lento (Ken Burns).
+  // Carrusel del hero (máx. 3 imágenes): crossfade suave entre fondos.
   // Reemplaza la 1ª (frontunt.webp) y agrega/quita placeholders cuando tengas
   // tus fotos definitivas (déjalas en src/assets e impórtalas como frontImage).
   const heroImages = [
@@ -81,10 +81,10 @@ export default function Inicio() {
           ══════════════════════════════════════════ */}
       <section
         className="relative overflow-hidden text-white flex items-center"
-        style={{ minHeight: `calc(100dvh - ${headerHeight}px - ${cifrasHeight}px)` }}
+        style={{ minHeight: `max(420px, calc(100dvh - ${headerHeight}px - ${cifrasHeight}px))` }}
       >
-        {/* Carrusel de fondo: crossfade + zoom lento (Ken Burns). Las imágenes
-            rotan solas; el contenido del hero se queda fijo encima. */}
+        {/* Carrusel de fondo: crossfade suave. Las imágenes rotan solas;
+            el contenido del hero se queda fijo encima. */}
         {heroImages.map((img, i) => (
           <div
             key={i}
@@ -117,7 +117,7 @@ export default function Inicio() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-xl lg:max-w-2xl ml-auto text-right"
+            className="max-w-xl lg:max-w-2xl mx-auto md:mr-0 md:ml-auto text-center md:text-right"
           >
             <motion.p variants={itemVariants} className="text-base md:text-lg font-display font-semibold text-white/70 uppercase tracking-widest mb-1">
               Escuela Profesional de
@@ -140,12 +140,12 @@ export default function Inicio() {
               con rigor académico y compromiso con la calidad educativa.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-end">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-center md:justify-end">
               <Link to="/academico/plan-estudios">
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 0 32px rgba(230,172,9,0.5)' }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-[#C49308] text-white font-black px-8 py-3.5 rounded-xl text-base transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-[#C49308] text-blue-deep font-black px-8 py-3.5 rounded-xl text-base transition-colors"
                 >
                   <GraduationCap className="w-5 h-5" />
                   Ver Plan de Estudios
@@ -408,7 +408,7 @@ export default function Inicio() {
                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
-                <span className="inline-block px-3.5 py-1.5 bg-gold text-white text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
+                <span className="inline-block px-3.5 py-1.5 bg-gold text-blue-deep text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
                   Aula Principal
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">
@@ -440,7 +440,7 @@ export default function Inicio() {
                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
-                <span className="inline-block px-3.5 py-1.5 bg-gold text-white text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
+                <span className="inline-block px-3.5 py-1.5 bg-gold text-blue-deep text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
                   Laboratorio
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">

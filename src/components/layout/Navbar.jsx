@@ -125,7 +125,7 @@ export default function Navbar() {
                   end={link.path === '/'}
                   className={({ isActive }) => clsx(
                   'font-body font-medium text-[16px] transition-colors flex items-center px-7 py-5 md:py-6',
-                  isActive ? 'bg-gold text-white' : 'text-white hover:bg-white/10'
+                  isActive ? 'bg-gold text-blue-deep' : 'text-white hover:bg-white/10'
                   )}
                 >
                   {link.name}
@@ -136,7 +136,7 @@ export default function Navbar() {
                 
                 {/* Dropdown */}
                 {link.sublinks && (
-                  <div className="absolute top-full left-0 w-64 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
+                  <div className="absolute top-full left-0 w-64 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50">
                     <div className="flex flex-col">
                       {link.sublinks.map((sublink) => (
                         <Link
