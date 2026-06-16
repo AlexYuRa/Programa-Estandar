@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
@@ -18,6 +18,13 @@ export default function Navbar() {
   // la visibilidad sigue siendo CSS (group-hover / group-focus-within).
   const [openSection, setOpenSection] = useState(null);
   const location = useLocation();
+  const menuButtonRef = useRef(null);
+
+  // Cierra el drawer móvil y devuelve el foco al botón que lo abrió.
+  const closeMenu = () => {
+    setIsOpen(false);
+    menuButtonRef.current?.focus();
+  };
 
   // Logo de la Escuela de Ingeniería Ambiental (src/assets/logo_ingAmb.png).
   const schoolLogoUrl = logoEscuela;
@@ -39,6 +46,24 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname, location.hash]);
+
+  // Mientras el drawer está abierto: bloquea el scroll del fondo y permite
+  // cerrarlo con Escape (devolviendo el foco al botón). Patrón de diálogo.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   return (
     <header 
@@ -207,77 +232,118 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="lg:hidden text-pucp-blue-dark p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-pucp-blue-dark focus-visible:ring-offset-2"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+            ref={menuButtonRef}
+            className="lg:hidden text-pucp-blue-dark p-2.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-pucp-blue-dark focus-visible:ring-offset-2"
+            onClick={() => setIsOpen((o) => !o)}
+            aria-label="Abrir menú"
+            aria-haspopup="dialog"
+            aria-controls="menu-movil"
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Menu className="w-6 h-6" />
           </button>
         </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Nav: drawer que entra desde la derecha sobre un overlay
+          (flota sobre el contenido, no lo empuja). Cierra con backdrop,
+          botón o Escape; bloquea el scroll del fondo mientras está abierto. */}
       <AnimatePresence>
         {isOpen && (
-          <motion.nav
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
-          >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4 max-h-[calc(100svh-8rem)] overflow-y-auto overscroll-contain">
-              {NAV_LINKS.map((link) => (
-                <div key={link.name} className="flex flex-col">
-                  <NavLink
-                    to={link.path}
-                    end={link.path === '/'}
-                    className={({ isActive }) => clsx(
-                      'font-bold py-2 border-b border-gray-50',
-                      isActive ? 'text-secondary' : 'text-primary'
-                    )}
-                  >
-                    {link.name}
-                  </NavLink>
-                  {link.groups && (
-                    <div className="pl-3 flex flex-col mt-2 gap-3">
-                      {link.groups.map((grupo) => (
-                        <div key={grupo.label} className="flex flex-col">
-                          <p className="text-[10px] font-black uppercase tracking-wider text-gold mb-1">
-                            {grupo.label}
-                          </p>
-                          <div className="pl-3 flex flex-col gap-0.5">
-                            {expandNavLinks(grupo.items).map((item) =>
-                              item.external ? (
-                                <a
-                                  key={item.name}
-                                  href={item.path}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary py-2"
-                                >
-                                  {item.name}<span className="sr-only"> (abre en pestaña nueva)</span>
-                                  <ExternalLink className="w-3 h-3 opacity-50" />
-                                </a>
-                              ) : (
-                                <Link
-                                  key={item.name}
-                                  to={item.path}
-                                  className="text-sm text-gray-600 hover:text-primary py-2"
-                                >
-                                  {item.name}
-                                </Link>
-                              )
-                            )}
+          <div className="lg:hidden">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={closeMenu}
+              className="fixed inset-0 z-40 bg-blue-deep/50"
+              aria-hidden="true"
+            />
+
+            {/* Panel deslizante */}
+            <motion.div
+              id="menu-movil"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menú de navegación"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', ease: [0.4, 0, 0.2, 1], duration: 0.3 }}
+              className="fixed top-0 right-0 z-50 h-[100dvh] w-[85vw] max-w-sm bg-white shadow-2xl flex flex-col"
+            >
+              {/* Cabecera: solo el control de cierre */}
+              <div className="flex items-center justify-end px-5 h-16 border-b border-gray-100 shrink-0">
+                <button
+                  type="button"
+                  autoFocus
+                  onClick={closeMenu}
+                  aria-label="Cerrar menú"
+                  className="p-1.5 -mr-1.5 text-primary rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Contenido scrollable */}
+              <nav
+                aria-label="Menú principal"
+                className="flex-1 overflow-y-auto overscroll-contain px-5 py-5 flex flex-col gap-5"
+              >
+                {NAV_LINKS.map((link) => (
+                  <div key={link.name} className="flex flex-col">
+                    <NavLink
+                      to={link.path}
+                      end={link.path === '/'}
+                      className={({ isActive }) => clsx(
+                        'font-display font-bold py-1',
+                        isActive ? 'text-gold' : 'text-primary'
+                      )}
+                    >
+                      {link.name}
+                    </NavLink>
+                    {link.groups && (
+                      <div className="mt-2 ml-1 pl-4 border-l border-gray-200 flex flex-col gap-3">
+                        {link.groups.map((grupo) => (
+                          <div key={grupo.label} className="flex flex-col">
+                            <p className="text-[10px] font-black uppercase tracking-wider text-gold mb-1">
+                              {grupo.label}
+                            </p>
+                            <div className="flex flex-col">
+                              {expandNavLinks(grupo.items).map((item) =>
+                                item.external ? (
+                                  <a
+                                    key={item.name}
+                                    href={item.path}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary py-2"
+                                  >
+                                    {item.name}<span className="sr-only"> (abre en pestaña nueva)</span>
+                                    <ExternalLink className="w-3 h-3 opacity-50" />
+                                  </a>
+                                ) : (
+                                  <Link
+                                    key={item.name}
+                                    to={item.path}
+                                    className="text-sm text-gray-600 hover:text-primary py-2"
+                                  >
+                                    {item.name}
+                                  </Link>
+                                )
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </motion.nav>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </nav>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
