@@ -17,7 +17,7 @@ export default function Contacto() {
         breadcrumbs={[{ label: 'Contacto' }]}
       />
 
-      <div className="bg-gray-50 py-12 min-h-screen">
+      <div className="bg-gray-50 py-12 min-h-[100svh]">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
             

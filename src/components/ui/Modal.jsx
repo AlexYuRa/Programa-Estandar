@@ -31,7 +31,7 @@ export function Modal({ isOpen, onClose, title, children }) {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-white rounded-xl shadow-2xl w-full max-w-lg pointer-events-auto overflow-hidden flex flex-col max-h-[90vh]"
+              className="bg-white rounded-xl shadow-2xl w-full max-w-lg pointer-events-auto overflow-hidden flex flex-col max-h-[90dvh]"
             >
               <div className="flex justify-between items-center p-5 border-b border-gray-100">
                 <h3 className="font-display font-bold text-xl text-primary">{title}</h3>
@@ -39,7 +39,7 @@ export function Modal({ isOpen, onClose, title, children }) {
                   &times;
                 </button>
               </div>
-              <div className="p-5 overflow-y-auto">
+              <div className="p-5 overflow-y-auto overscroll-contain">
                 {children}
               </div>
             </motion.div>

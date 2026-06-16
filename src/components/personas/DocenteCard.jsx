@@ -74,7 +74,7 @@ export default function DocenteCard({ docente }) {
               Especialidades
             </p>
           </div>
-          <ul className="space-y-2 overflow-y-auto custom-scrollbar text-left flex-1 pr-1">
+          <ul className="space-y-2 overflow-y-auto overscroll-contain custom-scrollbar text-left flex-1 pr-1">
             {especialidades.map((esp, i) => (
               <li key={i} className="flex gap-2 text-xs text-white/90 leading-snug">
                 <Check className="w-3.5 h-3.5 text-gold shrink-0 mt-0.5" strokeWidth={3} />

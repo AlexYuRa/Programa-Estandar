@@ -52,7 +52,7 @@ export default function FloatingAdmissions() {
           Descubre las modalidades de ingreso para formar parte de la Escuela de Ingeniería Ambiental.
         </p>
 
-        <div className="flex-1 overflow-y-auto pr-2 space-y-3 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto overscroll-contain pr-2 space-y-3 custom-scrollbar">
           {/* Modalidad 1: Examen Ordinario */}
           <div className="bg-white/10 rounded-lg p-4 border border-white/20">
             <div className="flex items-center gap-2 mb-2">
