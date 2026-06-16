@@ -226,7 +226,7 @@ export default function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-4 max-h-[calc(100svh-8rem)] overflow-y-auto overscroll-contain">
               {NAV_LINKS.map((link) => (
                 <div key={link.name} className="flex flex-col">
                   <NavLink

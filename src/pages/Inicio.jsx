@@ -99,7 +99,7 @@ export default function Inicio() {
           ══════════════════════════════════════════ */}
       <section
         className="relative overflow-hidden text-white flex items-center"
-        style={{ minHeight: `max(420px, calc(100dvh - ${headerHeight}px - ${cifrasHeight}px))` }}
+        style={{ minHeight: `max(420px, calc(100svh - ${headerHeight}px - ${cifrasHeight}px))` }}
       >
         {/* Carrusel de fondo: crossfade suave. Las imágenes rotan solas;
             el contenido del hero se queda fijo encima. */}
