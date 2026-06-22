@@ -50,3 +50,6 @@ CONTENIDO-REQUERIDO.md
 
 # Respaldo de imagenes originales sin optimizar (no subir)
 .asset-backup/
+
+.doc/diagnostico.md
+.doc/correciones.md

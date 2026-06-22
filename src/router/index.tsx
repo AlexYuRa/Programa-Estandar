@@ -46,7 +46,7 @@ import Resoluciones from '../pages/admision/Resoluciones';
 
 export default function AppRouter() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ScrollToHash />
       <FloatingAdmissions />
       <div className="flex flex-col min-h-[100svh]">

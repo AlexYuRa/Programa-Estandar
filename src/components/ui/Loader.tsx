@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import clsx from 'clsx';
 
 export function Loader({ fullScreen = false }) {
   const content = (

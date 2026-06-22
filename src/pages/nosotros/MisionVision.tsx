@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { SectionTitle } from '../../components/ui/SectionTitle';
 import MisionCard from '../../components/identidad/MisionCard';
 import ValorItem from '../../components/identidad/ValorItem';

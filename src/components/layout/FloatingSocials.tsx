@@ -8,7 +8,7 @@ export default function FloatingSocials() {
         href="https://facebook.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-12 h-12 bg-[#1877F2] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 group"
+        className="w-12 h-12 bg-[#1877F2] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-xl transition duration-300 group"
         aria-label="Facebook"
       >
         <svg
@@ -24,7 +24,7 @@ export default function FloatingSocials() {
         href="https://tiktok.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+        className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-xl transition duration-300 relative overflow-hidden group"
         aria-label="TikTok"
       >
         <div className="absolute inset-0 bg-gradient-to-tr from-[#00f2fe] via-black to-[#fe0979] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

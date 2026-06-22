@@ -38,8 +38,8 @@ export default function AnnouncementBanner() {
       {visible && (
       <motion.div
         key="banner"
-        initial={{ height: 0, opacity: 0 }}
-        animate={{ height: 'auto', opacity: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         exit={{ height: 0, opacity: 0 }}
         transition={{ duration: 0.3 }}
         className="bg-gold text-blue-deep overflow-hidden"
@@ -96,7 +96,7 @@ export default function AnnouncementBanner() {
                     aria-label={`Ir al aviso ${i + 1}`}
                     aria-current={i === currentIdx ? 'true' : undefined}
                   >
-                    <span className={`block h-1.5 rounded-full transition-all ${i === currentIdx ? 'bg-blue-deep w-3' : 'bg-blue-deep/40 w-1.5'}`} />
+                    <span className={`block h-1.5 rounded-full transition-[width,background-color] ${i === currentIdx ? 'bg-blue-deep w-3' : 'bg-blue-deep/40 w-1.5'}`} />
                   </button>
                 ))}
               </div>

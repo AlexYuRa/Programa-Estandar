@@ -18,7 +18,7 @@ export default function Footer() {
             {/* Columna 1: Identidad + Redes */}
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <img src={logo} alt="Logo UNT" loading="lazy" className="h-14 w-auto object-contain drop-shadow brightness-200" />
+                <img src={logo} alt="Logo UNT" loading="lazy" className="h-14 w-auto object-contain brightness-0 invert" />
                 <div className="flex flex-col">
                   <span className="font-display font-bold leading-tight text-base text-white">
                     Ingeniería Ambiental
@@ -66,7 +66,7 @@ export default function Footer() {
                   <li key={to}>
                     <Link
                       to={to}
-                      className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-150 text-sm flex items-center gap-1.5"
+                      className="text-gray-300 hover:text-white hover:translate-x-1 transition duration-150 text-sm flex items-center gap-1.5"
                     >
                       <span className="text-gold text-xs">›</span>
                       {label}

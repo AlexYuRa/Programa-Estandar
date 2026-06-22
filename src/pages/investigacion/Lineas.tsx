@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SectionTitle } from '../../components/ui/SectionTitle';
 import { lineasInvestigacion } from '../../constants/investigacion';
-import { ArrowRight } from 'lucide-react';
 
 export default function Lineas() {
   return (
@@ -25,7 +24,7 @@ export default function Lineas() {
               whileHover={{ y: -6 }}
               className="group h-full"
             >
-              <div className="h-full bg-white rounded-2xl border border-gray-100 hover:border-gold/40 hover:shadow-[0_8px_32px_rgba(230,172,9,0.1)] transition-all duration-300 overflow-hidden flex flex-col">
+              <div className="h-full bg-white rounded-2xl border border-gray-100 hover:border-gold/40 hover:shadow-[0_8px_32px_rgba(230,172,9,0.1)] transition duration-300 overflow-hidden flex flex-col">
                 {/* Cabecera coloreada */}
                 <div className="bg-primary px-6 pt-6 pb-8 relative overflow-hidden">
                   {/* Patrón de fondo */}

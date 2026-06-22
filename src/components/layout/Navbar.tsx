@@ -68,7 +68,7 @@ export default function Navbar() {
   return (
     <header 
       className={clsx(
-        'sticky top-0 z-50 w-full transition-all duration-300',
+        'sticky top-0 z-50 w-full transition duration-300',
         scrolled ? 'bg-white shadow-md' : 'bg-white'
       )}
     >
@@ -95,7 +95,7 @@ export default function Navbar() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearch}
-                className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-gold transition-all w-32 focus:w-48"
+                className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-gold transition-[width,border-color] w-32 focus:w-48"
               />
               <Search 
                 className="w-4 h-4 text-gray-400 ml-1 hover:text-gold cursor-pointer transition-colors" 
@@ -118,7 +118,7 @@ export default function Navbar() {
               <img
                 src={logo}
                 alt="Universidad Nacional de Trujillo"
-                className="h-16 sm:h-20 md:h-[120px] w-auto object-contain drop-shadow-md"
+                className="h-16 sm:h-20 md:h-[120px] w-auto object-contain"
               />
               {/* Separador (solo si existe el logo de la escuela) */}
               {schoolLogoOk && (
@@ -132,7 +132,7 @@ export default function Navbar() {
                 onLoad={() => setSchoolLogoOk(true)}
                 onError={() => setSchoolLogoOk(false)}
                 className={clsx(
-                  'h-16 sm:h-20 md:h-[120px] w-auto object-contain drop-shadow-md',
+                  'h-16 sm:h-20 md:h-[120px] w-auto object-contain',
                   !schoolLogoOk && 'hidden'
                 )}
               />

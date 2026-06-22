@@ -130,21 +130,21 @@ export default function Inicio() {
         {/* Acento naranja diagonal en la derecha */}
         <div className="absolute right-0 top-0 bottom-0 w-2 bg-gradient-to-b from-gold via-gold/60 to-transparent z-10" />
 
-        <div className="container relative z-10 mx-auto px-4 md:px-8 pt-10 pb-10 lg:pt-12 lg:pb-14">
+        <div className="container relative z-10 mx-auto px-4 md:px-8 pt-10 pb-28 md:pt-12 md:pb-14">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="max-w-xl lg:max-w-2xl mx-auto md:mr-0 md:ml-auto text-center md:text-right"
           >
-            <motion.p variants={itemVariants} className="text-base md:text-lg font-display font-semibold text-white/70 uppercase tracking-widest mb-1">
+            <motion.p variants={itemVariants} className="text-sm md:text-lg font-display font-semibold text-white/70 uppercase tracking-widest mb-2">
               Escuela Profesional de
             </motion.p>
 
             <motion.h1
               variants={itemVariants}
-              className="font-display font-black leading-none mb-3 text-white"
-              style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', textShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
+              className="font-display font-black leading-[0.95] mb-4 text-white"
+              style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)', textShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
             >
               Ingeniería<br />
               <span className="text-gold">Ambiental</span>
@@ -152,31 +152,34 @@ export default function Inicio() {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl lg:text-2xl text-white/85 mb-8 font-body leading-relaxed"
+              className="text-base md:text-xl lg:text-2xl text-white/85 mb-7 font-body leading-relaxed max-w-md md:max-w-none mx-auto"
             >
               Formamos ingenieros ambientales en la Universidad Nacional de Trujillo,
               con rigor científico y compromiso con la sostenibilidad.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-center md:justify-end">
-              <Link to="/academico/malla-curricular">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-3 justify-center md:justify-end max-w-xs sm:max-w-none mx-auto md:mr-0 md:ml-auto"
+            >
+              <Link to="/academico/malla-curricular" className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 0 32px rgba(230,172,9,0.5)' }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-deep text-blue-deep font-black px-8 py-3.5 rounded-xl text-base transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-deep text-blue-deep font-black px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base transition-colors"
                 >
-                  <GraduationCap className="w-5 h-5" />
+                  <GraduationCap className="w-5 h-5 shrink-0" />
                   Ver Plan de Estudios
                 </motion.button>
               </Link>
-              <Link to="/nosotros/mision-vision">
+              <Link to="/nosotros/mision-vision" className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-8 py-3.5 rounded-xl text-base backdrop-blur-sm transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base backdrop-blur-sm transition"
                 >
                   Conoce la Escuela
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 shrink-0" />
                 </motion.button>
               </Link>
             </motion.div>
@@ -193,7 +196,7 @@ export default function Inicio() {
               aria-label="Libro de Reclamaciones (abre en pestaña nueva)"
               className="pointer-events-auto inline-block rounded transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
             >
-              <img src={libroReclamaciones} alt="Libro de Reclamaciones" className="w-24 md:w-32 h-auto drop-shadow-md" />
+              <img src={libroReclamaciones} alt="Libro de Reclamaciones" className="w-20 md:w-32 h-auto drop-shadow-md" />
             </a>
           </div>
         </div>
@@ -268,12 +271,14 @@ export default function Inicio() {
               className="w-full rounded-xl overflow-hidden shadow-2xl relative border-4 border-gray-50"
               style={{ paddingTop: '56.25%' }}
             >
-              <iframe 
+              <iframe
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/6mmdvUizSbk?start=7" 
+                src="https://www.youtube-nocookie.com/embed/6mmdvUizSbk?start=7"
                 title="Video Institucional Ingeniería Ambiental UNT"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </motion.div>
@@ -333,7 +338,7 @@ export default function Inicio() {
                       <p className="text-gray-600 text-sm leading-relaxed mb-4">
                         {noticia.resumen}
                       </p>
-                      <span className="mt-auto inline-flex items-center gap-1 text-gold text-sm font-bold group-hover:gap-2 transition-all">
+                      <span className="mt-auto inline-flex items-center gap-1 text-gold text-sm font-bold group-hover:gap-2 transition-[gap]">
                         Leer más <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
@@ -371,11 +376,11 @@ export default function Inicio() {
                   whileHover={{ y: -6, scale: 1.02 }}
                 >
                   <Link to={acceso.link} className="block h-full group">
-                    <div className="h-full rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-gold/40 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(230,172,9,0.15)] flex flex-col">
+                    <div className="h-full rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-gold/40 transition duration-300 hover:shadow-[0_12px_40px_rgba(230,172,9,0.15)] flex flex-col">
                       
                       {/* Imagen de Portada */}
                       <div className="h-32 w-full relative overflow-hidden shrink-0">
-                        <div className="absolute inset-0 bg-primary/40 mix-blend-multiply z-10 group-hover:bg-primary/20 transition-colors duration-500" />
+                        <div className="absolute inset-0 bg-primary/40 z-10 group-hover:bg-primary/20 transition-colors duration-500" />
                         <img
                           src={acceso.imagen}
                           alt={acceso.titulo}
@@ -398,7 +403,7 @@ export default function Inicio() {
                         </p>
 
                         {/* CTA flecha */}
-                        <div className="mt-4 flex items-center gap-1 text-gold text-xs font-bold group-hover:gap-2 transition-all">
+                        <div className="mt-4 flex items-center gap-1 text-gold text-xs font-bold group-hover:gap-2 transition-[gap]">
                           Ver más <ArrowRight className="w-3.5 h-3.5" />
                         </div>
                       </div>
@@ -432,14 +437,14 @@ export default function Inicio() {
               className="group relative rounded-3xl overflow-hidden bg-blue-deep h-[380px] md:h-[450px] flex items-end shadow-xl"
             >
               <div className="absolute inset-0">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1587691592099-24045742c181?w=800&q=80"
-                  alt="Módulo de Estimulación Temprana"
+                  alt="Laboratorio de Calidad de Agua"
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-50 mix-blend-luminosity"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-deep via-blue-deep/80 to-transparent" />
-                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-primary/25" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
                 <span className="inline-block px-3.5 py-1.5 bg-gold text-blue-deep text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
@@ -464,14 +469,14 @@ export default function Inicio() {
               className="group relative rounded-3xl overflow-hidden bg-blue-deep h-[380px] md:h-[450px] flex items-end shadow-xl"
             >
               <div className="absolute inset-0">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1517430816045-df4b7ef11df1?w=800&q=80"
-                  alt="Centro de Cómputo"
+                  alt="Monitoreo de Calidad del Aire"
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-50 mix-blend-luminosity"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-deep via-blue-deep/80 to-transparent" />
-                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-primary/25" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
                 <span className="inline-block px-3.5 py-1.5 bg-gold text-blue-deep text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
