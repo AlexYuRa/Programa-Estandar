@@ -51,5 +51,6 @@ CONTENIDO-REQUERIDO.md
 # Respaldo de imagenes originales sin optimizar (no subir)
 .asset-backup/
 
-.docs/diagnostico.md
-.docs/correcciones.md
+# Documentos internos de diagnóstico/correcciones de rendimiento (no se publican)
+docs/diagnostico.md
+docs/correcciones.md

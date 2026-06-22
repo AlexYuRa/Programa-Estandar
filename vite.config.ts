@@ -11,6 +11,18 @@ export default defineConfig(({ command }) => {
     build: {
       outDir: isVercel ? 'dist' : '../wp-content/themes/educacion-primaria/dist',
       emptyOutDir: true,
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          // Agrupa las dependencias de terceros en chunks separados y cacheables,
+          // así no se redescargan cuando cambia el código de la app.
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+            'vendor-motion': ['framer-motion'],
+            'vendor-icons': ['lucide-react'],
+          },
+        },
+      },
     }
   };
 })

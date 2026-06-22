@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
@@ -6,43 +6,55 @@ import FloatingAdmissions from '../components/layout/FloatingAdmissions';
 import ScrollToHash from '../components/ScrollToHash';
 import EnConstruccion from '../components/layout/EnConstruccion';
 
-// Inicio / utilitarias
+// Inicio se carga de forma inmediata (es la primera pantalla / LCP).
 import Inicio from '../pages/Inicio';
-import Noticias from '../pages/Noticias';
-import Contacto from '../pages/Contacto';
-import NotFound from '../pages/NotFound';
+
+// El resto de páginas se cargan bajo demanda (code-splitting): cada ruta trae
+// su propio chunk solo al visitarla, así la carga inicial es mucho más ligera.
+const Noticias = lazy(() => import('../pages/Noticias'));
+const Contacto = lazy(() => import('../pages/Contacto'));
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 // Módulo: Nosotros
-import NosotrosIndex from '../pages/nosotros/index';
-import Historia from '../pages/nosotros/Historia';
-import MisionVision from '../pages/nosotros/MisionVision'; // agrupa Misión + Visión (#mision / #vision)
-import Objetivos from '../pages/nosotros/Objetivos';        // agrupa educativos + académicos
-import Perfiles from '../pages/nosotros/Perfiles';          // agrupa ingreso + egreso
+const NosotrosIndex = lazy(() => import('../pages/nosotros/index'));
+const Historia = lazy(() => import('../pages/nosotros/Historia'));
+const MisionVision = lazy(() => import('../pages/nosotros/MisionVision')); // Misión + Visión (#mision / #vision)
+const Objetivos = lazy(() => import('../pages/nosotros/Objetivos'));        // educativos + académicos
+const Perfiles = lazy(() => import('../pages/nosotros/Perfiles'));          // ingreso + egreso
 
 // Módulo: Organización
-import OrganizacionIndex from '../pages/organizacion/index';
-import OrganizacionDireccion from '../pages/organizacion/Direccion'; // agrupa escuela + departamento
-import Comites from '../pages/organizacion/Comites';                 // agrupa los 5 comités
+const OrganizacionIndex = lazy(() => import('../pages/organizacion/index'));
+const OrganizacionDireccion = lazy(() => import('../pages/organizacion/Direccion')); // escuela + departamento
+const Comites = lazy(() => import('../pages/organizacion/Comites'));                 // los 5 comités
 
 // Módulo: Académico
-import AcademicoIndex from '../pages/academico/index';
-import PlanEstudios from '../pages/academico/PlanEstudios';
-import Titulacion from '../pages/academico/Titulacion';
+const AcademicoIndex = lazy(() => import('../pages/academico/index'));
+const PlanEstudios = lazy(() => import('../pages/academico/PlanEstudios'));
+const Titulacion = lazy(() => import('../pages/academico/Titulacion'));
 
 // Módulo: Investigación
-import InvestigacionIndex from '../pages/investigacion/index';
-import Lineas from '../pages/investigacion/Lineas';
-import Publicaciones from '../pages/investigacion/Publicaciones';
-import ProyectosGrupo from '../pages/investigacion/ProyectosGrupo'; // agrupa proyectos + tesis
-import Convenios from '../pages/investigacion/convenios';            // reutilizado en Académico
+const InvestigacionIndex = lazy(() => import('../pages/investigacion/index'));
+const Lineas = lazy(() => import('../pages/investigacion/Lineas'));
+const Publicaciones = lazy(() => import('../pages/investigacion/Publicaciones'));
+const ProyectosGrupo = lazy(() => import('../pages/investigacion/ProyectosGrupo')); // proyectos + tesis
+const Convenios = lazy(() => import('../pages/investigacion/convenios'));            // reutilizado en Académico
 
 // Páginas reutilizadas
-import Docentes from '../pages/autoridades/Docentes';       // Organización › Docentes
-import Organigrama from '../pages/autoridades/Organigrama'; // Organización › Estructura organizacional
+const Docentes = lazy(() => import('../pages/autoridades/Docentes'));       // Organización › Docentes
+const Organigrama = lazy(() => import('../pages/autoridades/Organigrama')); // Organización › Estructura organizacional
 
 // Módulo: Admisión (enlazado desde el panel lateral)
-import GuiaPostulante from '../pages/admision/GuiaPostulante';
-import Resoluciones from '../pages/admision/Resoluciones';
+const GuiaPostulante = lazy(() => import('../pages/admision/GuiaPostulante'));
+const Resoluciones = lazy(() => import('../pages/admision/Resoluciones'));
+
+// Fallback mientras llega el chunk de la ruta. Reserva alto para evitar saltos.
+function RouteFallback() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center" role="status" aria-label="Cargando">
+      <div className="w-10 h-10 rounded-full border-4 border-gray-200 border-t-primary animate-spin" />
+    </div>
+  );
+}
 
 export default function AppRouter() {
   return (
@@ -53,6 +65,7 @@ export default function AppRouter() {
         <Navbar />
 
         <main className="flex-grow">
+          <Suspense fallback={<RouteFallback />}>
           <Routes>
             {/* Inicio */}
             <Route path="/" element={<Inicio />} />
@@ -108,6 +121,7 @@ export default function AppRouter() {
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </main>
 
         <Footer />
