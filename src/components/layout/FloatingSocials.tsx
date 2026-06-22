@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function FloatingSocials() {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 transform-gpu will-change-transform">
       {/* Facebook */}
       <a
         href="https://facebook.com"
