@@ -19,6 +19,7 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 const NosotrosIndex = lazy(() => import('../pages/nosotros/index'));
 const Historia = lazy(() => import('../pages/nosotros/Historia'));
 const MisionVision = lazy(() => import('../pages/nosotros/MisionVision')); // Misión + Visión (#mision / #vision)
+// Formación: el archivo vive en pages/nosotros/ pero ahora se monta bajo /academico.
 const Objetivos = lazy(() => import('../pages/nosotros/Objetivos'));        // educativos + académicos
 const Perfiles = lazy(() => import('../pages/nosotros/Perfiles'));          // ingreso + egreso
 
@@ -75,8 +76,6 @@ export default function AppRouter() {
               <Route index element={<Historia />} />
               <Route path="historia" element={<Historia />} />
               <Route path="mision-vision" element={<MisionVision />} />
-              <Route path="objetivos" element={<Objetivos />} />
-              <Route path="perfiles" element={<Perfiles />} />
             </Route>
 
             {/* ── Organización ── */}
@@ -91,7 +90,11 @@ export default function AppRouter() {
 
             {/* ── Académico ── */}
             <Route path="/academico" element={<AcademicoIndex />}>
-              <Route index element={<PlanEstudios />} />
+              {/* Índice = primera pestaña (Objetivos), igual que las demás secciones */}
+              <Route index element={<Objetivos />} />
+              {/* Formación (movida desde Nosotros) */}
+              <Route path="objetivos" element={<Objetivos />} />
+              <Route path="perfiles" element={<Perfiles />} />
               <Route path="malla-curricular" element={<PlanEstudios />} />
               <Route path="laboratorios" element={<EnConstruccion titulo="Laboratorios" />} />
               <Route path="responsabilidad-social" element={<EnConstruccion titulo="Responsabilidad **Social**" />} />

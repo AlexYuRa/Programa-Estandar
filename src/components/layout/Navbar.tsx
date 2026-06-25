@@ -38,9 +38,16 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Histéresis para evitar el parpadeo encoger/crecer en el umbral: encoge al
+    // pasar 90px y solo vuelve a tamaño completo por debajo de 30px. La zona
+    // muerta (30–90) impide que un reajuste de layout cruce el umbral de ida y vuelta.
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((prev) => (prev ? y > 30 : y > 90));
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -113,12 +120,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo / Marca */}
           <Link to="/" className="flex items-center gap-3 md:gap-4 group py-3">
-            <div className="flex items-center gap-3 md:gap-4 transition-transform group-hover:scale-[1.03]">
+            <div className="flex items-center gap-3 md:gap-4">
               {/* Logo de la Universidad */}
               <img
                 src={logo}
                 alt="Universidad Nacional de Trujillo"
-                className="h-16 sm:h-20 md:h-[120px] w-auto object-contain"
+                className="h-16 sm:h-20 md:h-[112px] w-auto object-contain"
               />
               {/* Separador (solo si existe el logo de la escuela) */}
               {schoolLogoOk && (
@@ -132,7 +139,7 @@ export default function Navbar() {
                 onLoad={() => setSchoolLogoOk(true)}
                 onError={() => setSchoolLogoOk(false)}
                 className={clsx(
-                  'h-16 sm:h-20 md:h-[120px] w-auto object-contain',
+                  'h-16 sm:h-20 md:h-[112px] w-auto object-contain',
                   !schoolLogoOk && 'hidden'
                 )}
               />
@@ -258,7 +265,7 @@ export default function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={closeMenu}
-              className="fixed inset-0 z-40 bg-blue-deep/50"
+              className="fixed inset-0 z-40 bg-primary/50"
               aria-hidden="true"
             />
 

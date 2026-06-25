@@ -59,23 +59,79 @@ export const NAV_LINKS: NavSection[] = [
           },
         ],
       },
+    ],
+  },
+  {
+    name: 'Académico',
+    path: '/academico',
+    groups: [
+      // "Formación" (Objetivos + Perfiles) movida desde Nosotros y puesta ARRIBA:
+      // sigue la cadena de acreditación objetivos → perfil → malla.
       {
         label: 'Formación',
         items: [
           {
             name: 'Objetivos',
-            path: '/nosotros/objetivos',
+            path: '/academico/objetivos',
             navAs: [
-              { name: 'Objetivos educativos', path: '/nosotros/objetivos#educativos' },
-              { name: 'Objetivos académicos', path: '/nosotros/objetivos#academicos' },
+              { name: 'Objetivos educativos', path: '/academico/objetivos#educativos' },
+              { name: 'Objetivos académicos', path: '/academico/objetivos#academicos' },
             ],
           },
           {
             name: 'Perfiles',
-            path: '/nosotros/perfiles',
+            path: '/academico/perfiles',
             navAs: [
-              { name: 'Perfil de ingreso', path: '/nosotros/perfiles#ingreso' },
-              { name: 'Perfil de egreso', path: '/nosotros/perfiles#egreso' },
+              { name: 'Perfil de ingreso', path: '/academico/perfiles#ingreso' },
+              { name: 'Perfil de egreso', path: '/academico/perfiles#egreso' },
+            ],
+          },
+        ],
+      },
+      {
+        label: 'Plan de estudios',
+        items: [
+          { name: 'Malla curricular', path: '/academico/malla-curricular' },
+        ],
+      },
+      {
+        label: 'Recursos',
+        items: [
+          { name: 'Laboratorios', path: '/academico/laboratorios' },
+          { name: 'Bienestar', path: '#', external: true },
+        ],
+      },
+      {
+        label: 'Vinculación',
+        items: [
+          { name: 'Responsabilidad social', path: '/academico/responsabilidad-social' },
+          { name: 'Convenios', path: '/academico/convenios' },
+          { name: 'Movilidad', path: '/academico/movilidad' },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Investigación',
+    path: '/investigacion',
+    groups: [
+      {
+        label: 'Producción',
+        items: [
+          { name: 'Líneas de investigación', path: '/investigacion/lineas' },
+          { name: 'Publicaciones', path: '/investigacion/publicaciones' },
+          { name: 'Revistas', path: '/investigacion/revistas' },
+        ],
+      },
+      {
+        label: 'Proyectos',
+        items: [
+          {
+            name: 'Proyectos',
+            path: '/investigacion/proyectos',
+            navAs: [
+              { name: 'Proyectos de investigación', path: '/investigacion/proyectos#investigacion' },
+              { name: 'Proyectos y tesis', path: '/investigacion/proyectos#tesis' },
             ],
           },
         ],
@@ -126,60 +182,6 @@ export const NAV_LINKS: NavSection[] = [
         label: 'Estructura',
         items: [
           { name: 'Estructura organizacional', path: '/organizacion/estructura' },
-        ],
-      },
-    ],
-  },
-  {
-    name: 'Académico',
-    path: '/academico',
-    groups: [
-      {
-        label: 'Plan de estudios',
-        items: [
-          { name: 'Malla curricular', path: '/academico/malla-curricular' },
-        ],
-      },
-      {
-        label: 'Recursos',
-        items: [
-          { name: 'Laboratorios', path: '/academico/laboratorios' },
-          { name: 'Bienestar', path: '#', external: true },
-        ],
-      },
-      {
-        label: 'Vinculación',
-        items: [
-          { name: 'Responsabilidad social', path: '/academico/responsabilidad-social' },
-          { name: 'Convenios', path: '/academico/convenios' },
-          { name: 'Movilidad', path: '/academico/movilidad' },
-        ],
-      },
-    ],
-  },
-  {
-    name: 'Investigación',
-    path: '/investigacion',
-    groups: [
-      {
-        label: 'Producción',
-        items: [
-          { name: 'Líneas de investigación', path: '/investigacion/lineas' },
-          { name: 'Publicaciones', path: '/investigacion/publicaciones' },
-          { name: 'Revistas', path: '/investigacion/revistas' },
-        ],
-      },
-      {
-        label: 'Proyectos',
-        items: [
-          {
-            name: 'Proyectos',
-            path: '/investigacion/proyectos',
-            navAs: [
-              { name: 'Proyectos de investigación', path: '/investigacion/proyectos#investigacion' },
-              { name: 'Proyectos y tesis', path: '/investigacion/proyectos#tesis' },
-            ],
-          },
         ],
       },
     ],

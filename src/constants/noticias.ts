@@ -27,7 +27,7 @@ export const noticias = [
   {
     id: 3,
     categoria: 'Logro Institucional',
-    categoriaColor: 'bg-blue-deep text-white',
+    categoriaColor: 'bg-primary text-white',
     titulo: 'Nuevo laboratorio de monitoreo de calidad del aire',
     resumen:
       'Nos complace anunciar la implementación de un nuevo laboratorio de monitoreo de calidad del aire para fortalecer la formación práctica y la investigación.',

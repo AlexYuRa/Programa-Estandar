@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 import PageWrapper from '../components/layout/PageWrapper';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { Card } from '../components/ui/Card';
-import { BookOpen, Users, FlaskConical, GraduationCap, Handshake, ArrowRight, Calendar } from 'lucide-react';
+import { BookOpen, Users, FlaskConical, GraduationCap, Handshake, ArrowRight, Calendar, ShieldCheck } from 'lucide-react';
 import frontImage from '../assets/front_ingAmbi.webp';
 import frontImage2 from '../assets/front_ingAmbi1.webp';
 import frontImage3 from '../assets/frontunt.webp';
 import libroReclamaciones from '../assets/libro-de-reclamaciones-37735_logosenvector.com_5.svg';
+import useLogo from '../assets/uselogo-icon.png';
 import { noticias } from '../constants/noticias';
 import { libroReclamacionesUrl } from '../constants/contacto';
 import useHeaderHeight from '../hooks/useHeaderHeight';
@@ -85,11 +86,13 @@ export default function Inicio() {
     { titulo: "Convenios", descripcion: "Alianzas con entidades del sector ambiental.", icono: Handshake, link: "/academico/convenios", imagen: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=80" },
   ];
 
+  // Cifras de impacto (datos de EJEMPLO para el demo; reemplazar por cifras
+  // verificables). El estado de acreditación se muestra como sello en el hero,
+  // no aquí.
   const cifras = [
     { numero: "+15", etiqueta: "Años formando ingenieros", sub: "de trayectoria ininterrumpida" },
     { numero: "800+", etiqueta: "Egresados a nivel nacional", sub: "aportando a la sostenibilidad" },
     { numero: "100%", etiqueta: "Malla actualizada", sub: "con enfoque en sostenibilidad" },
-    { numero: "SINEACE", etiqueta: "En proceso de acreditación", sub: "calidad educativa" },
   ];
 
   return (
@@ -120,12 +123,11 @@ export default function Inicio() {
           ) : null
         )}
 
-        {/* Overlay institucional: izquierda transparente (deja ver la foto) →
-            'primary' (#12377B) → 'blue-deep' (#000C4A). El extremo oscuro coincide
-            con la franja de cifras (también blue-deep) para que se sientan continuos. */}
+        {/* Degradado institucional azul + máscara negra semitransparente encima */}
         <div className="absolute inset-0 z-[1]"
-          style={{ background: 'linear-gradient(110deg, rgba(0,12,74,0.05) 0%, rgba(18,55,123,0.52) 42%, rgba(0,12,74,0.78) 70%, rgba(0,12,74,0.88) 100%)' }}
+          style={{ background: 'linear-gradient(110deg, rgba(18,55,123,0.05) 0%, rgba(18,55,123,0.52) 42%, rgba(18,55,123,0.78) 70%, rgba(18,55,123,0.88) 100%)' }}
         />
+        <div className="absolute inset-0 z-[1] bg-black/30" />
 
         {/* Patrón de puntos sutil (radial-gradient CSS en vez de SVG: una capa
             de pintura menos que recalcular durante el scroll). */}
@@ -160,7 +162,7 @@ export default function Inicio() {
 
             <motion.p
               variants={itemVariants}
-              className="text-base md:text-xl lg:text-2xl text-white/85 mb-7 font-body leading-relaxed max-w-md md:max-w-none mx-auto"
+              className="text-base lg:text-xl text-white/85 mb-7 font-body leading-relaxed text-balance max-w-md md:max-w-none mx-auto"
             >
               Formamos ingenieros ambientales en la Universidad Nacional de Trujillo,
               con rigor científico y compromiso con la sostenibilidad.
@@ -172,7 +174,7 @@ export default function Inicio() {
             >
               <Link to="/academico/malla-curricular" className="w-full sm:w-auto">
                 <motion.button
-                  whileHover={{ scale: 1.04, boxShadow: '0 0 32px rgba(230,172,9,0.5)' }}
+                  whileHover={{ scale: 1.04, boxShadow: '0 0 32px rgba(230,173,9,0.5)' }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-deep text-white font-black px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base transition-colors"
                 >
@@ -180,32 +182,55 @@ export default function Inicio() {
                   Ver Plan de Estudios
                 </motion.button>
               </Link>
-              <Link to="/nosotros/mision-vision" className="w-full sm:w-auto">
+              <Link to="/academico/perfiles" className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base backdrop-blur-sm transition"
                 >
-                  Conoce la Escuela
+                  Perfiles académicos
                   <ArrowRight className="w-4 h-4 shrink-0" />
                 </motion.button>
               </Link>
             </motion.div>
+
+            {/* Sello de acreditación (después de los CTAs). TEXTO DE EJEMPLO para el
+                demo (plantilla): reemplazar por el estado/ente real y su logo oficial. */}
+            <motion.div variants={itemVariants} className="mt-6 flex justify-center md:justify-end">
+              <span className="inline-flex items-center gap-2 rounded-full bg-gold/15 border border-gold/30 px-3 py-1.5 text-xs sm:text-sm font-semibold text-white backdrop-blur-sm">
+                <ShieldCheck className="w-4 h-4 text-gold shrink-0" />
+                Acreditada por SINEACE
+              </span>
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* Libro de Reclamaciones (oficial), alineado al gutter del sitio */}
+        {/* Accesos del pie del hero: Libro de Reclamaciones + Bolsa de trabajo */}
         <div className="absolute inset-x-0 bottom-4 md:bottom-8 z-10 pointer-events-none">
           <div className="container mx-auto px-4 md:px-8">
-            <a
-              href={libroReclamacionesUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Libro de Reclamaciones (abre en pestaña nueva)"
-              className="pointer-events-auto inline-block rounded transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-            >
-              <img src={libroReclamaciones} alt="Libro de Reclamaciones" className="w-20 md:w-32 h-auto drop-shadow-md" />
-            </a>
+            <div className="flex items-center gap-3 flex-wrap">
+              {/* Libro de Reclamaciones (oficial) */}
+              <a
+                href={libroReclamacionesUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Libro de Reclamaciones (abre en pestaña nueva)"
+                className="pointer-events-auto inline-block rounded transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+              >
+                <img src={libroReclamaciones} alt="Libro de Reclamaciones" className="w-20 md:w-32 h-auto drop-shadow-md" />
+              </a>
+
+              {/* Bolsa de trabajo (UNT · USE) */}
+              <a
+                href="https://use-dpa.unitru.edu.pe/bolsadetrabajo"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Bolsa de trabajo (abre en pestaña nueva)"
+                className="pointer-events-auto inline-block rounded transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+              >
+                <img src={useLogo} alt="Bolsa de trabajo UNT" className="h-[54px] md:h-[87px] w-auto drop-shadow-md" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -213,9 +238,9 @@ export default function Inicio() {
       {/* ══════════════════════════════════════════
           CIFRAS — Franja de impacto oscura
           ══════════════════════════════════════════ */}
-      <section ref={cifrasRef} className="bg-blue-deep py-0">
+      <section ref={cifrasRef} className="bg-primary py-0">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-4">
+          <div className="grid grid-cols-3">
             {cifras.map((cifra, idx) => (
               <motion.div
                 key={idx}
@@ -223,11 +248,11 @@ export default function Inicio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className={`py-5 px-1.5 sm:py-6 sm:px-4 md:py-8 md:px-6 text-center border-white/10 ${idx < 3 ? 'border-r' : ''}`}
+                className={`py-5 px-1.5 sm:py-6 sm:px-4 md:py-8 md:px-6 text-center border-white/10 ${idx < 2 ? 'border-r' : ''}`}
               >
                 <div
                   className="text-base sm:text-2xl md:text-4xl font-display font-black mb-1 text-gold"
-                  style={{ textShadow: '0 0 20px rgba(230,172,9,0.3)' }}
+                  style={{ textShadow: '0 0 20px rgba(230,173,9,0.3)' }}
                 >
                   {cifra.numero}
                 </div>
@@ -384,7 +409,7 @@ export default function Inicio() {
                   whileHover={{ y: -6, scale: 1.02 }}
                 >
                   <Link to={acceso.link} className="block h-full group">
-                    <div className="h-full rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-gold/40 transition duration-300 hover:shadow-[0_12px_40px_rgba(230,172,9,0.15)] flex flex-col">
+                    <div className="h-full rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-gold/40 transition duration-300 hover:shadow-[0_12px_40px_rgba(230,173,9,0.15)] flex flex-col">
                       
                       {/* Imagen de Portada */}
                       <div className="h-32 w-full relative overflow-hidden shrink-0">
@@ -397,7 +422,7 @@ export default function Inicio() {
                         />
                         {/* Ícono de categoría */}
                         <div className="absolute bottom-2 left-2 z-20 w-9 h-9 rounded-lg bg-gold flex items-center justify-center shadow-md">
-                          <IconComp className="w-5 h-5 text-blue-deep" />
+                          <IconComp className="w-5 h-5 text-primary" />
                         </div>
                       </div>
 
@@ -442,7 +467,7 @@ export default function Inicio() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="group relative rounded-3xl overflow-hidden bg-blue-deep h-[380px] md:h-[450px] flex items-end shadow-xl"
+              className="group relative rounded-3xl overflow-hidden bg-primary h-[380px] md:h-[450px] flex items-end shadow-xl"
             >
               <div className="absolute inset-0">
                 <img
@@ -451,11 +476,11 @@ export default function Inicio() {
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-deep via-blue-deep/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                 <div className="absolute inset-0 bg-primary/25" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
-                <span className="inline-block px-3.5 py-1.5 bg-gold text-blue-deep text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
+                <span className="inline-block px-3.5 py-1.5 bg-gold text-primary text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
                   Laboratorio
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">
@@ -474,7 +499,7 @@ export default function Inicio() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="group relative rounded-3xl overflow-hidden bg-blue-deep h-[380px] md:h-[450px] flex items-end shadow-xl"
+              className="group relative rounded-3xl overflow-hidden bg-primary h-[380px] md:h-[450px] flex items-end shadow-xl"
             >
               <div className="absolute inset-0">
                 <img
@@ -483,11 +508,11 @@ export default function Inicio() {
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-deep via-blue-deep/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
                 <div className="absolute inset-0 bg-primary/25" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
-                <span className="inline-block px-3.5 py-1.5 bg-gold text-blue-deep text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
+                <span className="inline-block px-3.5 py-1.5 bg-gold text-primary text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
                   Laboratorio
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">

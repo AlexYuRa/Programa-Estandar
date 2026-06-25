@@ -7,23 +7,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        /* ── Paleta Institucional (UNT · Ingeniería Ambiental) ──
-           Identidad: azul 'primary' (#12377B) + 'gold' (#E6AC09).
-           Superficies oscuras y hover del azul → 'blue-deep' (#000C4A).
-           Texto base → 'ink' (#1B1711). Hover del dorado → 'gold-deep'. */
+        /* ── Paleta Institucional (UNT) — actualizada ──
+           Identidad: azul 'primary' (#12377B) + 'gold' (#E6AD09).
+           Superficies oscuras → 'primary' (la paleta nueva no tiene navy).
+           Texto base → 'ink' (#1E1A17). Hover del dorado → 'gold-deep'. */
         primary: '#12377B',       // Azul institucional (color base)
-        gold: '#E6AC09',          // Dorado (acento)
-        'gold-deep': '#C49308',   // Dorado oscuro (hover)
-        'blue-deep': '#000C4A',   // Azul profundo (fondos oscuros / hover)
-        ink: '#1B1711',           // Casi negro cálido (texto base)
+        gold: '#E6AD09',          // Dorado (acento)
+        'gold-deep': '#C49308',   // Dorado oscuro (hover del dorado, derivado)
+        'gold-bright': '#FDF107', // Amarillo vivo (solo degradados)
+        ink: '#1E1A17',           // Casi negro cálido (texto base)
+        graphite: '#373435',      // Gris oscuro institucional
+        white: '#FDFDF3',         // Blanco cálido institucional (override del white)
 
-        /* Solo para degradados, nunca como relleno/texto/borde sólido. */
-        'gold-bright': '#FDF107',
-        'blue-electric': '#092EFF',
-
-        /* Semántico (los neutros usan la escala nativa de Tailwind:
-           white / black / slate-50 / gray-*). */
-        success: '#2D6A4F',       // Verde (estados de éxito)
+        /* Semánticos */
+        success: '#0C8F3D',       // Verde institucional (éxito)
+        danger: '#D82610',        // Rojo institucional (error / alerta)
       },
       fontFamily: {
         sans: ['Arial', 'Helvetica', 'sans-serif'],

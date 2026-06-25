@@ -31,9 +31,9 @@ export default function MisionCard({ title, description, icon }: MisionCardProps
           <div
             className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 relative"
             style={{
-              background: 'rgba(230,172,9,0.15)',
-              border: '1px solid rgba(230,172,9,0.3)',
-              boxShadow: '0 0 20px rgba(230,172,9,0.12)',
+              background: 'rgba(230,173,9,0.15)',
+              border: '1px solid rgba(230,173,9,0.3)',
+              boxShadow: '0 0 20px rgba(230,173,9,0.12)',
             }}
           >
             {icon}

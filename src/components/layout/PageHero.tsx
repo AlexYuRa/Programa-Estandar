@@ -86,9 +86,9 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], icon: Icon
               transition={{ duration: 0.5, type: 'spring' }}
               className="hidden md:flex shrink-0 w-20 h-20 rounded-2xl items-center justify-center relative"
               style={{
-                background: 'linear-gradient(135deg, rgba(230,172,9,0.25) 0%, rgba(230,172,9,0.08) 100%)',
-                border: '1px solid rgba(230,172,9,0.35)',
-                boxShadow: '0 0 30px rgba(230,172,9,0.15)',
+                background: 'linear-gradient(135deg, rgba(230,173,9,0.25) 0%, rgba(230,173,9,0.08) 100%)',
+                border: '1px solid rgba(230,173,9,0.35)',
+                boxShadow: '0 0 30px rgba(230,173,9,0.15)',
               }}
             >
               <Icon className="w-10 h-10 text-gold" />

@@ -59,7 +59,7 @@ export default function Footer() {
                   { label: 'Misión y Visión', to: '/nosotros/mision-vision' },
                   { label: 'Historia de la Escuela', to: '/nosotros/historia' },
                   { label: 'Plan de Estudios', to: '/academico/malla-curricular' },
-                  { label: 'Perfil del Egresado', to: '/nosotros/perfiles#egreso' },
+                  { label: 'Perfil del Egresado', to: '/academico/perfiles#egreso' },
                   { label: 'Líneas de Investigación', to: '/investigacion/lineas' },
                   { label: 'Plana Docente', to: '/organizacion/docentes' },
                 ].map(({ label, to }) => (
