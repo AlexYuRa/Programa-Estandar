@@ -33,7 +33,7 @@ export const site: SiteConfig = {
 
   hero: {
     eyebrow: 'Programa de Estudios de',
-    titulo: { linea1: 'Nombre de la', linea2: 'Carrera' },
+    titulo: { linea1: 'Nombre de', linea2: 'la Carrera' },
     descripcion:
       'Descripción breve del programa de estudios para el hero: a quién forma y con qué enfoque. Reemplaza este texto por el de tu programa.',
     ctas: {
@@ -53,23 +53,23 @@ export const site: SiteConfig = {
 
   // Cifras destacadas de la franja del hero. Reemplaza números y etiquetas.
   cifras: [
-    { numero: '00', etiqueta: 'Primera cifra destacada', sub: 'Descripción breve de la cifra' },
-    { numero: '000+', etiqueta: 'Segunda cifra destacada', sub: 'Descripción breve de la cifra' },
-    { numero: '00%', etiqueta: 'Tercera cifra destacada', sub: 'Descripción breve de la cifra' },
+    { numero: '---', etiqueta: 'Primera cifra destacada', sub: 'Descripción breve de la cifra' },
+    { numero: '---+', etiqueta: 'Segunda cifra destacada', sub: 'Descripción breve de la cifra' },
+    { numero: '---%', etiqueta: 'Tercera cifra destacada', sub: 'Descripción breve de la cifra' },
   ],
 
   decana: {
     nombre: 'Nombre del Decano(a)',
-    cargo: 'Decano(a) del Programa de Estudios',
+    cargo: 'Decano(a) de la Nombre de la Escuela/Carrera Profesional',
     mensaje:
-      'Mensaje de bienvenida del decano(a). Aquí va un párrafo que recibe a los visitantes y resume el espíritu del programa. Reemplaza este texto por el de tu programa.',
+      'Mensaje de bienvenida del decano(a). Aquí va un párrafo que recibe a los visitantes y resume el espíritu del programa. Reemplazar por texto real del decano(a) de tu programa.',
     // ID del video de YouTube para el mensaje de bienvenida. Déjalo vacío hasta
     // tener el video de tu programa; al ponerlo, el reproductor aparece solo.
     video: { youtubeId: '', start: 0 },
   },
 
   enlaces: {
-    libroReclamaciones: '#',
+    libroReclamaciones: 'https://reclamos.servicios.gob.pe/?institution_id=247',
     bolsaTrabajo: '#',
   },
 

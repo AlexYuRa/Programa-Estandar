@@ -41,7 +41,7 @@ export const ambientes: Ambiente[] = [
     titulo: 'Nombre del Ambiente 2',
     descripcion:
       'Descripción breve del segundo ambiente o laboratorio: con qué cuenta y para qué se usa en la formación. Reemplaza este texto por el de tu programa.',
-    imagen: 'https://picsum.photos/seed/ambiente-2/800/600',
+    imagen: 'https://picsum.photos/seed/ambiente-3/800/600',
     alt: 'Nombre del Ambiente 2',
   },
 ];

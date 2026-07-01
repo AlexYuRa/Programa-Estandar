@@ -68,5 +68,21 @@ export const docentes = [
     cursoPrincipal: "Curso o área principal",
     especialidades: ["Especialidad 1", "Especialidad 2"],
     foto: null
+  },
+  {
+    nombre: "Nombre del Docente 9",
+    grado: "Doctor",
+    departamento: "Departamento Académico 2",
+    cursoPrincipal: "Curso o área principal",
+    especialidades: ["Especialidad 1", "Especialidad 2"],
+    foto: null
+  },
+  {
+    nombre: "Nombre del Docente 10",
+    grado: "Doctor",
+    departamento: "Departamento Académico 1",
+    cursoPrincipal: "Curso o área principal",
+    especialidades: ["Especialidad 1", "Especialidad 2"],
+    foto: null
   }
 ];
